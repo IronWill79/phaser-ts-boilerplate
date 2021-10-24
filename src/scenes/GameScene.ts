@@ -1,12 +1,10 @@
+import { PhysicsRectangle } from '../types';
+
 const sceneConfig: Phaser.Types.Scenes.SettingsConfig = {
   active: false,
   visible: false,
   key: 'Game',
 };
-
-type PhysicsBody<T> = T & { body: Phaser.Physics.Arcade.Body };
-
-type PhysicsRectangle = PhysicsBody<Phaser.GameObjects.Rectangle>;
 
 export class GameScene extends Phaser.Scene {
   private square: PhysicsRectangle;
@@ -14,6 +12,10 @@ export class GameScene extends Phaser.Scene {
   constructor() {
     super(sceneConfig);
   }
+
+  public init() {}
+
+  public preload() {}
 
   public create() {
     this.square = this.add.rectangle(
