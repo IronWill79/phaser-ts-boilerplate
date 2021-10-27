@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: './src/main.ts',
@@ -15,6 +16,7 @@ module.exports = {
     ],
   },
   resolve: {
+    plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })],
     extensions: ['.ts', '.tsx', '.js'],
   },
   output: {
@@ -22,6 +24,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   mode: process.env.NODE_ENV == 'production' ? 'production' : 'development',
+  devtool: 'inline-source-map',
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
